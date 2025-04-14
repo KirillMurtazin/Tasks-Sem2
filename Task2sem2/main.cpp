@@ -1,6 +1,7 @@
 ﻿#include <iostream>
 #include <locale.h>
-#include "Task2.h"
+#include "Triangle.h"
+#include "Point.h"
 
 int main()
 {

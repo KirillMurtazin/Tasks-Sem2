@@ -23,4 +23,6 @@ public:
     // Вспомогательная функция для расчета длины стороны по координатам двух точек
     double calculateSideLength(const Point& point1, const Point& point2) const;
 
+    // Проверка существования треугольника
+    bool isValid() const;
 };

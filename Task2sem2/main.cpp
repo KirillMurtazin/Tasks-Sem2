@@ -3,31 +3,46 @@
 #include "Triangle.h"
 #include "Point.h"
 
+Point getPoint(const char* pointName) {
+    double x, y;
+    std::cout << "Введите координаты точки " << pointName << " (x y): ";
+    std::cin >> x >> y;
+    return Point(x, y);
+}
+
+Triangle getTriangle() {
+    while (true) {
+        // Получаем три точки для треугольника
+        Point A = getPoint("A");
+        Point B = getPoint("B");
+        Point C = getPoint("C");
+
+        // Проверяем, что все точки разные
+        if (A == B || A == C || B == C) {
+            std::cout << "Ошибка: точки не должны совпадать. Пожалуйста, введите координаты заново.\n";
+            continue;
+        }
+
+        // Создаем временный треугольник для проверки
+        Triangle tempTriangle(A, B, C);
+
+        // Проверяем существование треугольника
+        if (!tempTriangle.isValid()) {
+            std::cout << "Ошибка: треугольник с такими точками не существует. Пожалуйста, введите координаты заново.\n";
+            continue;
+        }
+
+        // Если все проверки пройдены, возвращаем треугольник
+        return tempTriangle;
+    }
+}
+
 int main()
 {
     setlocale(LC_ALL, "RU");
 
-    double x1, y1, x2, y2, x3, y3;
-
-    // Ввод координат первой точки
-    std::cout << "Введите координаты первой точки (x1 y1): ";
-    std::cin >> x1 >> y1;
-
-    // Ввод координат второй точки
-    std::cout << "Введите координаты второй точки (x2 y2): ";
-    std::cin >> x2 >> y2;
-
-    // Ввод координат третьей точки
-    std::cout << "Введите координаты третьей точки (x3 y3): ";
-    std::cin >> x3 >> y3;
-
-    // Создаем три точки для треугольника
-    Point A(x1, y1);
-    Point B(x2, y2);
-    Point C(x3, y3);
-
-    // Создаем треугольник
-    Triangle triangle(A, B, C);
+    // Получаем треугольник от пользователя
+    Triangle triangle = getTriangle();
 
     // Вычисляем периметр и площадь
     double perimeter = triangle.calculatePerimeter(triangle);

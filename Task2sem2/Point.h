@@ -9,4 +9,14 @@ public:
     double Y;
 
     Point(double xCoord = 0.0, double yCoord = 0.0);
+
+    // Оператор равенства
+    bool operator==(const Point& other) const {
+        return (std::abs(X - other.X) < 1e-10) && (std::abs(Y - other.Y) < 1e-10);
+    }
+
+    // Оператор неравенства
+    bool operator!=(const Point& other) const {
+        return !(*this == other);
+    }
 };

@@ -8,7 +8,6 @@ Segment::Segment(const Point& start, const Point& end) : start(start), end(end)
         throw std::invalid_argument("Начальная и конечная точки совпадают");
     }
 }
-
 double Segment::calculateY(double x) const
 {
     double x1 = start.getX();

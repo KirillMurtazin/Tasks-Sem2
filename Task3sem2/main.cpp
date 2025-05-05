@@ -64,6 +64,5 @@ int main()
     {
         std::cerr << "Ошибка: " << e.what() << std::endl;
     }
-
     return 0;
 }

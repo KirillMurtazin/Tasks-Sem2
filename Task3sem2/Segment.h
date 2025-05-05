@@ -5,9 +5,11 @@
 class Segment
 {
 private:
+
     Point start;
     Point end;
 public:
+
     Segment(const Point& start, const Point& end);
     double calculateY(double x) const;
     Segment operator<<(double shift) const;

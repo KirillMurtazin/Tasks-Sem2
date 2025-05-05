@@ -12,11 +12,13 @@ public:
 
     // Оператор равенства
     bool operator==(const Point& other) const {
-        return (std::abs(X - other.X) < 1e-10) && (std::abs(Y - other.Y) < 1e-10);
+        return (std::abs(X - other.X) < std::numeric_limits<double>::epsilon()) &&
+            (std::abs(Y - other.Y) < std::numeric_limits<double>::epsilon());
     }
 
     // Оператор неравенства
     bool operator!=(const Point& other) const {
-        return !(*this == other);
+        return (std::abs(X - other.X) >= std::numeric_limits<double>::epsilon()) ||
+            (std::abs(Y - other.Y) >= std::numeric_limits<double>::epsilon());
     }
 };

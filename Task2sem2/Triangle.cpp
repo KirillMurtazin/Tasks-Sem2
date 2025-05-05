@@ -3,8 +3,18 @@
 
 // Реализация конструктора Triangle
 Triangle::Triangle(const Point& point1, const Point& point2, const Point& point3)
-    : pointA(point1), pointB(point2), pointC(point3) {}
+    : pointA(point1), pointB(point2), pointC(point3) 
+{
+    // Проверяем, что все точки разные
+    if (point1 == point2 || point1 == point3 || point2 == point3) {
+        throw InvalidTriangleException("Ошибка: точки не должны совпадать");
+    }
 
+    // Проверяем существование треугольника
+    if (!isValid()) {
+        throw InvalidTriangleException("Ошибка: треугольник с такими точками не существует");
+    }
+}
 
 // Вычисление периметра
 double Triangle::calculatePerimeter(const Triangle& triangle) const

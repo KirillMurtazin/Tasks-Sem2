@@ -11,46 +11,35 @@ Point getPoint(const char* pointName) {
 }
 
 Triangle getTriangle() {
-    while (true) {
-        // Получаем три точки для треугольника
-        Point A = getPoint("A");
-        Point B = getPoint("B");
-        Point C = getPoint("C");
+    // Получаем три точки для треугольника
+    Point A = getPoint("A");
+    Point B = getPoint("B");
+    Point C = getPoint("C");
 
-        // Проверяем, что все точки разные
-        if (A == B || A == C || B == C) {
-            std::cout << "Ошибка: точки не должны совпадать. Пожалуйста, введите координаты заново.\n";
-            continue;
-        }
-
-        // Создаем временный треугольник для проверки
-        Triangle tempTriangle(A, B, C);
-
-        // Проверяем существование треугольника
-        if (!tempTriangle.isValid()) {
-            std::cout << "Ошибка: треугольник с такими точками не существует. Пожалуйста, введите координаты заново.\n";
-            continue;
-        }
-
-        // Если все проверки пройдены, возвращаем треугольник
-        return tempTriangle;
-    }
+    // Создаем треугольник (проверка валидности происходит в конструкторе)
+    return Triangle(A, B, C);
 }
 
 int main()
 {
     setlocale(LC_ALL, "RU");
 
-    // Получаем треугольник от пользователя
-    Triangle triangle = getTriangle();
+    try {
+        // Получаем треугольник от пользователя
+        Triangle triangle = getTriangle();
 
-    // Вычисляем периметр и площадь
-    double perimeter = triangle.calculatePerimeter(triangle);
-    double area = triangle.calculateArea(triangle);
+        // Вычисляем периметр и площадь
+        double perimeter = triangle.calculatePerimeter(triangle);
+        double area = triangle.calculateArea(triangle);
 
-    // Выводим результаты
-    std::cout << "Периметр треугольника: " << perimeter << std::endl;
-    std::cout << "Площадь треугольника: " << area << std::endl;
+        // Выводим результаты
+        std::cout << "Периметр треугольника: " << perimeter << std::endl;
+        std::cout << "Площадь треугольника: " << area << std::endl;
+    }
+    catch (const InvalidTriangleException& e) {
+        std::cerr << e.what() << std::endl;
+        return 1;
+    }
 
     return 0;
 }

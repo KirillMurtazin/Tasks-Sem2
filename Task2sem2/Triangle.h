@@ -1,6 +1,12 @@
 ﻿#pragma once
 #include <cmath>
+#include <stdexcept>
 #include "Point.h"
+
+class InvalidTriangleException : public std::runtime_error {
+public:
+    InvalidTriangleException(const char* message) : std::runtime_error(message) {}
+};
 
 class Triangle
 {
@@ -15,7 +21,6 @@ public:
 
     // Функция для расчета периметра треугольника
     double calculatePerimeter(const Triangle& triangle) const;
-
 
     // Функция для расчета площади треугольника
     double calculateArea(const Triangle& triangle) const;

@@ -2,7 +2,7 @@
 #include "Point.h"
 #include <iostream>
 
-class Segment 
+class Segment
 {
 private:
     Point start;

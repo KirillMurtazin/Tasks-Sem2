@@ -2,20 +2,14 @@
 #include "Segment.h"
 #include <locale.h>
 
-int main() 
+int main()
 {
     setlocale(LC_ALL, "RU");
     double x1, y1, x2, y2;
-    
-    // Ввод координат первой точки
-    std::cout << "Введите координаты первой точки (x1 y1): ";
-    std::cin >> x1 >> y1;
-    Point p1(x1, y1);
 
-    // Ввод координат второй точки
-    std::cout << "Введите координаты второй точки (x2 y2): ";
-    std::cin >> x2 >> y2;
-    Point p2(x2, y2);
+    // Ввод координат первой точки
+    Point p1 = GetPoint("первой");
+    Point p2 = GetPoint("второй");
 
     // Создание отрезка
     Segment seg(p1, p2);
@@ -27,12 +21,12 @@ int main()
     std::cin >> x;
 
     // Расчет ординаты
-    try 
+    try
     {
         double y = seg.calculateY(x);
         std::cout << "Y при x=" << x << ": " << y << std::endl;
     }
-    catch (const std::invalid_argument& e) 
+    catch (const std::invalid_argument& e)
     {
         std::cerr << "Ошибка: " << e.what() << std::endl;
     }
@@ -62,11 +56,11 @@ int main()
     // Проверка вертикального отрезка
     std::cout << "Введите x для проверки вертикального отрезка: ";
     std::cin >> x;
-    try 
+    try
     {
         std::cout << "Y при x=" << x << ": " << vertical.calculateY(x) << std::endl;
     }
-    catch (const std::invalid_argument& e) 
+    catch (const std::invalid_argument& e)
     {
         std::cerr << "Ошибка: " << e.what() << std::endl;
     }

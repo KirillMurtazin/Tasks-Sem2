@@ -17,7 +17,8 @@ private:
     double a; // Сторона BC
     double b; // Сторона AC
     double c; // Сторона AB
-
+    // Проверка существования треугольника (внутренняя функция)
+    bool isValid() const;
 public:
     // Конструктор для создания треугольника по трем точкам
     Triangle(const Point& point1, const Point& point2, const Point& point3);
@@ -35,7 +36,4 @@ public:
 
     // Вспомогательная функция для расчета длины стороны по координатам двух точек
     double calculateSideLength(const Point& point1, const Point& point2) const;
-
-    // Проверка существования треугольника
-    bool isValid() const;
 };

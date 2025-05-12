@@ -19,7 +19,6 @@ public:
     }
     // Оператор неравенства
     bool operator!=(const Point& other) const {
-        return (std::abs(X - other.X) >= std::numeric_limits<double>::epsilon()) ||
-               (std::abs(Y - other.Y) >= std::numeric_limits<double>::epsilon());
+        return !(*this == other);
     }
 };

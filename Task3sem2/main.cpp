@@ -2,10 +2,24 @@
 #include "Segment.h"
 #include <locale.h>
 
+Point GetPoint(const std::string& prompt) {
+    double x, y;
+    std::cout << "Введите координаты " << prompt << " точки (x y): ";
+    std::cin >> x >> y;
+    return Point(x, y);
+}
+
+double getCoordinate(const std::string& prompt) {
+    double x;
+    std::cout << prompt;
+    std::cin >> x;
+    return x;
+}
+
 int main()
 {
     setlocale(LC_ALL, "RU");
-    double x1, y1, x2, y2;
+    double x1 = 0, y1 = 0, x2 = 0, y2 = 0;
 
     // Ввод координат первой точки
     Point p1 = GetPoint("первой");
@@ -16,9 +30,7 @@ int main()
     std::cout << "Создан отрезок: " << seg << std::endl;
 
     // Ввод x для расчета ординаты
-    double x;
-    std::cout << "Введите x для расчета ординаты: ";
-    std::cin >> x;
+    double x = getCoordinate("Введите x для расчета ординаты: ");
 
     // Расчет ординаты
     try
@@ -54,8 +66,7 @@ int main()
     std::cout << "Создан вертикальный отрезок: " << vertical << std::endl;
 
     // Проверка вертикального отрезка
-    std::cout << "Введите x для проверки вертикального отрезка: ";
-    std::cin >> x;
+    x = getCoordinate("Введите x для проверки вертикального отрезка: ");
     try
     {
         std::cout << "Y при x=" << x << ": " << vertical.calculateY(x) << std::endl;

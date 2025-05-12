@@ -1,11 +1,3 @@
-#include "pch.h"
-
-TEST(TestCaseName, TestName) 
-{
-    EXPECT_EQ(1, 1);
-    EXPECT_TRUE(true);
-}
-
 #include <gtest/gtest.h>
 #include <sstream>
 #include "../Task3sem2/Point.h"
@@ -49,13 +41,12 @@ TEST(PointTest, EqualityOperators)
     // Test equality
     EXPECT_TRUE(p1 == p2);
     EXPECT_TRUE(p2 == p1);
+    EXPECT_FALSE(p2 == p3);
     
     // Test inequality
     EXPECT_TRUE(p1 != p3);
     EXPECT_TRUE(p3 != p1);
-    
-    // Test self-equality
-    EXPECT_TRUE(p1 == p1);
+    EXPECT_FALSE(p1 != p1);
     
     // Test with different coordinates
     Point p4(1.0, 3.0);

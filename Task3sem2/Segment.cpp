@@ -1,5 +1,6 @@
 ﻿#include "Segment.h"
 #include <stdexcept>
+#include <limits>
 
 Segment::Segment(const Point& start, const Point& end) : start(start), end(end)
 {
@@ -18,7 +19,7 @@ double Segment::calculateY(double x) const
     // Проверка на совпадение точек
     if (start == end)
     {
-        if (x == x1)
+        if (std::abs(x - x1) < std::numeric_limits<double>::epsilon())
         {
             return y1;
         }
@@ -28,9 +29,9 @@ double Segment::calculateY(double x) const
         }
     }
 
-    if (x1 == x2)
+    if (std::abs(x1 - x2) < std::numeric_limits<double>::epsilon())
     {
-        if (x == x1)
+        if (std::abs(x - x1) < std::numeric_limits<double>::epsilon())
         {
             return (y1 + y2) / 2.0;
         }
@@ -53,7 +54,7 @@ Segment Segment::operator<<(double shift) const
 
 Segment Segment::readFrom(std::istream& is)
 {
-    double x1, y1, x2, y2;
+    double x1 = 0, y1 = 0, x2 = 0, y2 = 0;
     is >> x1 >> y1 >> x2 >> y2;
     return Segment(Point(x1, y1), Point(x2, y2));
 }

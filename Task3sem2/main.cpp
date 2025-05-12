@@ -2,24 +2,13 @@
 #include "Segment.h"
 #include <locale.h>
 
-Point GetPoint(const std::string& prompt) {
-    double x, y;
-    std::cout << "Введите координаты " << prompt << " точки (x y): ";
-    std::cin >> x >> y;
-    return Point(x, y);
-}
-
-double getCoordinate(const std::string& prompt) {
-    double x;
-    std::cout << prompt;
-    std::cin >> x;
-    return x;
-}
+Point GetPoint(const std::string& prompt);
+double getCoordinate(const std::string& prompt);
 
 int main()
 {
     setlocale(LC_ALL, "RU");
-    double x1 = 0, y1 = 0, x2 = 0, y2 = 0;
+    double x1 = 0.0, y1 = 0.0, x2 = 0.0, y2 = 0.0;
 
     // Ввод координат первой точки
     Point p1 = GetPoint("первой");
@@ -76,4 +65,18 @@ int main()
         std::cerr << "Ошибка: " << e.what() << std::endl;
     }
     return 0;
+}
+
+Point GetPoint(const std::string& prompt) {
+    double x = 0.0, y = 0.0;
+    std::cout << "Введите координаты " << prompt << " точки (x y): ";
+    std::cin >> x >> y;
+    return Point(x, y);
+}
+
+double getCoordinate(const std::string& prompt) {
+    double x = 0.0;
+    std::cout << prompt;
+    std::cin >> x;
+    return x;
 }

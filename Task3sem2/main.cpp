@@ -67,14 +67,16 @@ int main()
     return 0;
 }
 
-Point GetPoint(const std::string& prompt) {
+Point GetPoint(const std::string& prompt) 
+{
     double x = 0.0, y = 0.0;
     std::cout << "Введите координаты " << prompt << " точки (x y): ";
     std::cin >> x >> y;
     return Point(x, y);
 }
 
-double getCoordinate(const std::string& prompt) {
+double getCoordinate(const std::string& prompt) 
+{
     double x = 0.0;
     std::cout << prompt;
     std::cin >> x;

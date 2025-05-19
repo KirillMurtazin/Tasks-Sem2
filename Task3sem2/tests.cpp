@@ -3,10 +3,9 @@
 #include "../Task3sem2/Point.h"
 #include "../Task3sem2/Segment.h"
 
-// Тесты класса Point
+// Tests for Point class
 TEST(PointTest, DefaultConstructor) 
 {
-    // Проверка конструктора по умолчанию
     Point p;
     EXPECT_DOUBLE_EQ(p.getX(), 0.0);
     EXPECT_DOUBLE_EQ(p.getY(), 0.0);
@@ -14,7 +13,6 @@ TEST(PointTest, DefaultConstructor)
 
 TEST(PointTest, ParameterizedConstructor) 
 {
-    // Проверка параметризованного конструктора
     Point p(3.5, -2.1);
     EXPECT_DOUBLE_EQ(p.getX(), 3.5);
     EXPECT_DOUBLE_EQ(p.getY(), -2.1);
@@ -40,65 +38,64 @@ TEST(PointTest, EqualityOperators)
     Point p2(1.0, 2.0);
     Point p3(2.0, 1.0);
     
-    // Проверка на равенство
+    // Test equality
     EXPECT_TRUE(p1 == p2);
     EXPECT_TRUE(p2 == p1);
     EXPECT_FALSE(p2 == p3);
     
-    // Тестовое неравенство
+    // Test inequality
     EXPECT_TRUE(p1 != p3);
     EXPECT_TRUE(p3 != p1);
     EXPECT_FALSE(p1 != p1);
     
-    // Тест с разными координатами
+    // Test with different coordinates
     Point p4(1.0, 3.0);
     Point p5(3.0, 2.0);
     EXPECT_TRUE(p1 != p4);
     EXPECT_TRUE(p1 != p5);
 }
 
-// Тесты для класса Segment
+// Tests for Segment class
 TEST(SegmentTest, Constructor) 
 {
-    // Проверка конструктора и вычисления Y
     Point p1(1, 2);
     Point p2(4, 6);
     Segment seg(p1, p2);
+
     EXPECT_DOUBLE_EQ(seg.calculateY(2.5), 4.0);
 }
 
 TEST(SegmentTest, ConstructorWithCoincidingPoints) 
 {
-    // Проверка исключения при совпадающих точках
     Point p(2.0, 3.0);
     EXPECT_THROW(Segment(p, p), std::invalid_argument);
 }
 
 TEST(SegmentTest, CalculateY) 
 {
-    // Наклонный сегмент
+    // Inclined segment
     Segment seg1(Point(0, 0), Point(2, 2));
     EXPECT_DOUBLE_EQ(seg1.calculateY(1), 1.0);
 
-    // Горизонтальный сегмент
+    // Horizontal segment
     Segment seg2(Point(2, 5), Point(6, 5));
     EXPECT_DOUBLE_EQ(seg2.calculateY(4), 5.0);
 
-    // Вертикальный сегмент
+    // Vertical segment
     Segment seg3(Point(3, 0), Point(3, 4));
     EXPECT_DOUBLE_EQ(seg3.calculateY(3), 2.0);
 }
 
 TEST(SegmentTest, PointSegment) 
 {
-    // Отрезок с совпадающими точками
+    // Segment with coinciding points
     Point p(2.0, 3.0);
     Segment seg(p, p);
     
-    // Тест в точке
+    // Test at the point
     EXPECT_DOUBLE_EQ(seg.calculateY(2.0), 3.0);
     
-    // Тест за пределами точки
+    // Test outside the point
     EXPECT_THROW(seg.calculateY(1.0), std::invalid_argument);
     EXPECT_THROW(seg.calculateY(3.0), std::invalid_argument);
 }
@@ -139,21 +136,20 @@ TEST(SegmentTest, OutputOperator)
 
 TEST(SegmentTest, EdgeCases) 
 {
-    // Точка в начале сегмента
+    // Point at segment start
     Segment seg1(Point(0, 0), Point(2, 2));
     EXPECT_DOUBLE_EQ(seg1.calculateY(0), 0.0);
 
-    // Точка на конце сегмента
+    // Point at segment end
     EXPECT_DOUBLE_EQ(seg1.calculateY(2), 2.0);
 
-    // Точка снаружи сегмента (слева)
+    // Point outside segment (left)
     EXPECT_THROW(seg1.calculateY(-1), std::invalid_argument);
 
-    // Точка снаружи сегмента (справа)
+    // Point outside segment (right)
     EXPECT_THROW(seg1.calculateY(3), std::invalid_argument);
 }
 
-// Основная функция для запуска всех тестов
 int main(int argc, char** argv) 
 {
     testing::InitGoogleTest(&argc, argv);

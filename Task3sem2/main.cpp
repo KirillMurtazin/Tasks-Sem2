@@ -4,38 +4,57 @@
 #include <stdexcept>
 #include <locale.h>
 
-/**
- * @brief Получает координаты точки от пользователя
- * @param pointName Название точки для вывода в запросе
- * @return Созданная точка с введенными координатами
- * 
- * Запрашивает у пользователя координаты X и Y для точки
- * и создает объект Point с введенными значениями.
- */
+// Function declarations
+Point GetPoint(const std::string& pointName);
+double getCoordinate(const std::string& prompt);
+void demonstratePoints();
+void demonstrateSegments();
+bool demonstrateSegment(const std::string& segmentName);
+
+int main() {
+    try {
+        // Установка русской локали для корректного вывода
+        setlocale(LC_ALL, "RU");
+
+        // Демонстрация работы с точками
+        demonstratePoints();
+
+        // Демонстрация работы с отрезками
+        demonstrateSegments();
+
+        // Интерактивная работа с отрезками
+        if (!demonstrateSegment("обычного отрезка")) {
+            return 1;
+        }
+
+        // Создание вертикального отрезка
+        if (!demonstrateSegment("вертикального отрезка")) {
+            return 1;
+        }
+
+    } catch (const std::exception& e) {
+        std::cerr << "Критическая ошибка: " << e.what() << std::endl;
+        return 1;
+    }
+
+    return 0;
+}
+
+// Function implementations
 Point GetPoint(const std::string& pointName) {
-    double x, y;
+    double x = 0, y = 0;
     std::cout << "Введите координаты " << pointName << " точки (x y): ";
     std::cin >> x >> y;
     return Point(x, y);
 }
 
-/**
- * Выводит запрос пользователю и считывает числовое значение.
- * Используется для получения координат и других числовых параметров.
- */
 double getCoordinate(const std::string& prompt) {
-    double value;
+    double value = 0;
     std::cout << prompt;
     std::cin >> value;
     return value;
 }
 
-/**
- * @brief Демонстрирует работу с точками
- * 
- * Создает несколько точек и демонстрирует операции сравнения.
- * Показывает работу операторов == и != для класса Point.
- */
 void demonstratePoints() {
     std::cout << "\nДемонстрация работы с точками:\n";
     
@@ -52,14 +71,6 @@ void demonstratePoints() {
     std::cout << "p1 != p3: " << (p1 != p3) << "\n";
 }
 
-/**
- * @brief Демонстрирует работу с отрезками
- * 
- * Создает отрезок и демонстрирует различные операции с ним:
- * - Вычисление Y-координаты для заданного X
- * - Сдвиг отрезка
- * - Чтение отрезка из потока
- */
 void demonstrateSegments() {
     std::cout << "\nДемонстрация работы с отрезками:\n";
     
@@ -89,14 +100,6 @@ void demonstrateSegments() {
     }
 }
 
-/**
- * @brief Создает и демонстрирует работу с отрезком
- * @param segmentName Название отрезка для вывода
- * @return true если операция выполнена успешно, false при ошибке
- * 
- * Создает отрезок по введенным координатам и демонстрирует
- * операции с ним: вычисление Y-координаты и сдвиг.
- */
 bool demonstrateSegment(const std::string& segmentName) {
     try {
         std::cout << "\nСоздание " << segmentName << ":\n";
@@ -125,46 +128,4 @@ bool demonstrateSegment(const std::string& segmentName) {
         std::cerr << "Ошибка при создании отрезка: " << e.what() << std::endl;
         return false;
     }
-}
-
-/**
- * @brief Главная функция программы
- * @return 0 при успешном завершении, 1 при ошибке
- * 
- * Основная функция программы, которая демонстрирует работу с классами
- * Point и Segment. Включает:
- * - Создание точек и отрезков
- * - Вычисление координат на отрезке
- * - Сдвиг отрезков
- * - Обработку исключений
- * 
- * @throw std::exception при критических ошибках
- */
-int main() {
-    try {
-        // Установка русской локали для корректного вывода
-        setlocale(LC_ALL, "RU");
-
-        // Демонстрация работы с точками
-        demonstratePoints();
-
-        // Демонстрация работы с отрезками
-        demonstrateSegments();
-
-        // Интерактивная работа с отрезками
-        if (!demonstrateSegment("обычного отрезка")) {
-            return 1;
-        }
-
-        // Создание вертикального отрезка
-        if (!demonstrateSegment("вертикального отрезка")) {
-            return 1;
-        }
-
-    } catch (const std::exception& e) {
-        std::cerr << "Критическая ошибка: " << e.what() << std::endl;
-        return 1;
-    }
-
-    return 0;
 }

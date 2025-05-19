@@ -64,15 +64,3 @@ bool Point::operator!=(const Point& other) const
 {
     return !(*this == other);
 }
-
-/**
- * @brief Получить копию точки
- * @return Новая точка с теми же координатами
- * 
- * Создает и возвращает новую точку с теми же координатами,
- * что и текущая точка.
- */
-Point Point::GetPoint() const 
-{
-    return *this;
-}

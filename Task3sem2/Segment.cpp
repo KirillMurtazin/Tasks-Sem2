@@ -42,20 +42,7 @@ double Segment::calculateY(double x) const
     double y1 = start.getY();
     double x2 = end.getX();
     double y2 = end.getY();
-
-    // Проверка на совпадение точек
-    if (start == end)
-    {
-        if (std::abs(x - x1) < std::numeric_limits<double>::epsilon())
-        {
-            return y1;
-        }
-        else
-        {
-            throw std::invalid_argument("x находится не на точечном сегменте");
-        }
-    }
-
+    
     if (std::abs(x1 - x2) < std::numeric_limits<double>::epsilon())
     {
         if (std::abs(x - x1) < std::numeric_limits<double>::epsilon())

@@ -2,9 +2,31 @@
 #include "Segment.h"
 #include <locale.h>
 
+/**
+ * @brief Считывает точку с консоли
+ * @param prompt Подсказка для пользователя
+ * @return Введённая точка
+ */
 Point GetPoint(const std::string& prompt);
+
+/**
+ * @brief Считывает координату с консоли
+ * @param prompt Подсказка для пользователя
+ * @return Введённая координата
+ */
 double getCoordinate(const std::string& prompt);
 
+/**
+ * @brief Главная функция программы
+ *
+ * Последовательно:
+ * 1. Считывает две точки и создаёт отрезок
+ * 2. Выводит отрезок
+ * 3. Считывает x и вычисляет y на отрезке
+ * 4. Сдвигает отрезок и выводит результат
+ * 5. Создаёт вертикальный отрезок и проверяет вычисление y
+ * @return Код завершения
+ */
 int main()
 {
     setlocale(LC_ALL, "RU");
@@ -67,6 +89,11 @@ int main()
     return 0;
 }
 
+/**
+ * @brief Считывает точку с консоли
+ * @param prompt Подсказка для пользователя
+ * @return Введённая точка
+ */
 Point GetPoint(const std::string& prompt) 
 {
     double x = 0.0, y = 0.0;
@@ -75,6 +102,11 @@ Point GetPoint(const std::string& prompt)
     return Point(x, y);
 }
 
+/**
+ * @brief Считывает координату с консоли
+ * @param prompt Подсказка для пользователя
+ * @return Введённая координата
+ */
 double getCoordinate(const std::string& prompt) 
 {
     double x = 0.0;

@@ -43,24 +43,21 @@ LinkedList::~LinkedList() {
     size = 0;
 }
 
-// Оператор присваивания копированием
-LinkedList& LinkedList::operator=(const LinkedList& other) {
-    if (this != &other) {  // Проверка на самоприсваивание
-        LinkedList temp(other);  // Создаем временную копию
-        std::swap(head, temp.head);  // Обмениваем указатели
-        std::swap(size, temp.size);  // Обмениваем размеры
-    }
-    return *this;
-}
-
 // Оператор присваивания перемещением
-LinkedList& LinkedList::operator=(LinkedList&& other) noexcept {
-    if (this != &other) {  // Проверка на самоприсваивание
+LinkedList& LinkedList::operator=(const LinkedList&& other) {
+     if (this != &other) {  // Проверка на самоприсваивание
         delete head;  // Освобождаем текущие ресурсы
         head = other.head;  // Перехватываем ресурсы
         size = other.size;
-        other.head = nullptr;  // Очищаем другой список
-        other.size = 0;
+    return *this;
+}
+
+// Оператор присваивания копированием
+LinkedList& LinkedList::operator=(LinkedList& other) noexcept {
+       if (this != &other) {  // Проверка на самоприсваивание
+        LinkedList temp(other);  // Создаем временную копию
+        std::swap(head, temp.head);  // Обмениваем указатели
+        std::swap(size, temp.size);  // Обмениваем размеры
     }
     return *this;
 }

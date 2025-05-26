@@ -16,12 +16,8 @@
  * заданный двумя точками (начало и конец). Поддерживает операции
  * с отрезками, включая вычисление координат, сдвиг и ввод/вывод.
  */
-class GEOMETRY_API Segment
+class GEOMETRY_API Segment : public PiecewiseLinearApproximation
 {
-private:
-    Point start; ///< Начальная точка отрезка
-    Point end;   ///< Конечная точка отрезка
-
 public:
     /**
      * @brief Конструктор отрезка

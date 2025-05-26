@@ -149,9 +149,3 @@ TEST(SegmentTest, EdgeCases)
     // Point outside segment (right)
     EXPECT_THROW(seg1.calculateY(3), std::invalid_argument);
 }
-
-int main(int argc, char** argv) 
-{
-    testing::InitGoogleTest(&argc, argv);
-    return RUN_ALL_TESTS();
-} 

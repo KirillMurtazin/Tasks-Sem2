@@ -18,12 +18,14 @@
  * Создает отрезок с заданными начальной и конечной точками.
  * Если точки совпадают, выбрасывает исключение.
  */
-Segment::Segment(const Point& start, const Point& end) : start(start), end(end)
+Segment::Segment(const Point& start, const Point& end) 
 {
     if (start == end)
     {
         throw std::invalid_argument("Начальная и конечная точки совпадают");
     }
+    // Инициализация базового класса с точками отрезка
+    points = {start, end};
 }
 
 /**
@@ -38,10 +40,11 @@ Segment::Segment(const Point& start, const Point& end) : start(start), end(end)
  */
 double Segment::calculateY(double x) const
 {
-    double x1 = start.getX();
-    double y1 = start.getY();
-    double x2 = end.getX();
-    double y2 = end.getY();
+    // Используем точки из базового класса
+    double x1 = points[0].getX();
+    double y1 = points[0].getY();
+    double x2 = points[1].getX();
+    double y2 = points[1].getY();
     
     if (std::abs(x1 - x2) < std::numeric_limits<double>::epsilon())
     {
@@ -69,8 +72,9 @@ double Segment::calculateY(double x) const
  */
 Segment Segment::operator<<(double shift) const
 {
-    Point newStart(start.getX() - shift, start.getY());
-    Point newEnd(end.getX() - shift, end.getY());
+    // Используем точки из базового класса
+    Point newStart = points[0] << shift;
+    Point newEnd = points[1] << shift;
     return Segment(newStart, newEnd);
 }
 
@@ -89,6 +93,7 @@ Segment Segment::readFrom(std::istream& is)
     if (!(is >> x1 >> y1 >> x2 >> y2)) {
         throw std::runtime_error("Ошибка чтения отрезка из потока");
     }
+    // Создаем сегмент, который инициализирует базовый класс
     return Segment(Point(x1, y1), Point(x2, y2));
 }
 
@@ -102,7 +107,8 @@ Segment Segment::readFrom(std::istream& is)
  */
 std::ostream& operator<<(std::ostream& os, const Segment& segment)
 {
-    os << "Segment from (" << segment.start.getX() << ", " << segment.start.getY()
-        << ") to (" << segment.end.getX() << ", " << segment.end.getY() << ")";
+    // Используем точки из базового класса
+    os << "Segment from (" << segment.points[0].getX() << ", " << segment.points[0].getY()
+        << ") to (" << segment.points[1].getX() << ", " << segment.points[1].getY() << ")";
     return os;
 }

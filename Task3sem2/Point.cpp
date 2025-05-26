@@ -7,9 +7,7 @@
 
 #include "Point.h"
 #include <cmath>
-
-// Константа для сравнения чисел с плавающей точкой
-const double EPSILON = 1e-10;
+#include <limits>
 
 /**
  * @brief Конструктор точки
@@ -49,7 +47,7 @@ double Point::getY() const
  */
 bool Point::operator==(const Point& other) const 
 {
-    return std::abs(x - other.x) < EPSILON && std::abs(y - other.y) < EPSILON;
+    return std::abs(x - other.x) < std::numeric_limits<double>::epsilon() && std::abs(y - other.y) < std::numeric_limits<double>::epsilon();
 }
 
 /**

@@ -163,8 +163,3 @@ TEST(LinkedListTest, GetSize) {
     list.remove(2);
     EXPECT_EQ(list.getSize(), 0);
 }
-
-int main(int argc, char **argv) {
-    testing::InitGoogleTest(&argc, argv);
-    return RUN_ALL_TESTS();
-} 

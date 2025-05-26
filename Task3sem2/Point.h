@@ -19,6 +19,8 @@ public:
     bool operator==(const Point& other) const;
     bool operator!=(const Point& other) const;
 
-    // Получение точки
-    Point GetPoint() const;
+    // Операторы сдвига
+    Point operator<<(double shift) const; // Сдвиг влево (уменьшение X и Y)
+    Point operator>>(double shift) const; // Сдвиг вправо (увеличение X и Y)
+
 };

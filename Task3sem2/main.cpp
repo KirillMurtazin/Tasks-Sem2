@@ -4,7 +4,7 @@
 #include <stdexcept>
 #include <locale.h>
 
-// Function declarations
+// Объявления функций
 Point GetPoint(const std::string& pointName);
 double getCoordinate(const std::string& prompt);
 void demonstratePoints();
@@ -40,7 +40,7 @@ int main() {
     return 0;
 }
 
-// Function implementations
+// Реализации функций
 Point GetPoint(const std::string& pointName) {
     double x = 0, y = 0;
     std::cout << "Введите координаты " << pointName << " точки (x y): ";
